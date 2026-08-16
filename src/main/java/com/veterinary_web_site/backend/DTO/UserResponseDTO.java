@@ -8,19 +8,41 @@ public class UserResponseDTO {
     private String fullName;
     private String email;
     private Role role;
+    private String telefono;
+    private String direccion;
+    private boolean activo;
 
     public UserResponseDTO() {
     }
 
-    public UserResponseDTO(Integer id, String fullName, String email, Role role) {
+    public UserResponseDTO(
+            Integer id,
+            String fullName,
+            String email,
+            Role role,
+            String telefono,
+            String direccion,
+            boolean activo
+    ) {
         this.id = id;
         this.fullName = fullName;
         this.email = email;
         this.role = role;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.activo = activo;
     }
 
     public static UserResponseDTO fromUser(User user) {
-        return new UserResponseDTO(user.getId(), user.getFullName(), user.getEmail(), user.getRole());
+        return new UserResponseDTO(
+                user.getId(),
+                user.getFullName(),
+                user.getEmail(),
+                user.getRole(),
+                user.getTelefono(),
+                user.getDireccion(),
+                user.isActivo()
+        );
     }
 
     public Integer getId() {
@@ -53,5 +75,29 @@ public class UserResponseDTO {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 }

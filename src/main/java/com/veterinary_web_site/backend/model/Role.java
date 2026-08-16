@@ -27,7 +27,12 @@ public enum Role {
                 return role;
             }
         }
-        return valueOf(normalized.toUpperCase(Locale.ROOT));
+        return switch (normalized) {
+            case "admin", "administrador" -> ADMIN;
+            case "veterinario", "veterinarian" -> VETERINARIAN;
+            case "cliente", "customer", "user", "usuario" -> CUSTOMER;
+            default -> CUSTOMER;
+        };
     }
 
     public static Role fromRequest(String value) {
@@ -38,7 +43,7 @@ public enum Role {
         return switch (normalized) {
             case "admin", "administrador" -> ADMIN;
             case "veterinario", "veterinarian" -> VETERINARIAN;
-            case "cliente", "customer" -> CUSTOMER;
+            case "cliente", "customer", "user", "usuario" -> CUSTOMER;
             default -> valueOf(normalized.toUpperCase(Locale.ROOT));
         };
     }
